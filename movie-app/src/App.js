@@ -3,46 +3,23 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-	constructor(props) {
-		super(props);
-		console.log('constructor');
-	} /* no this.props here, constractor is javascript, it reander first */
-
-	componentWillMount() {
-		console.log('will mount');
-	} /* mostly not used constractor do the same */
-
-	componentDidMount() {
-		console.log('mounted');
-	} /* mostly used for faching data */
-
-	state = {
-		toggle: true
-	};
-
-	toggle = () => {
-		this.setState({
-			toggle: !this.state.toggle
-		});
-	}; /* method */
+	submit = () => {
+		console.log(this.text.value);
+	}; /* "this.text.value" is added to get the input value */
 
 	render() {
 		return (
 			<div className="App">
 				<header className="App-header">
 					<img src={logo} className="App-logo" alt="logo" />
-					<Welcome
-						text="Welcome to Using Props"
-						toggle={this.state.toggle}
-					/>{' '}
-					{/* passing props to chiled */}
+					<Welcome text="Welcome to Using Props" />
 				</header>
 				<p className="App-intro">
 					To get started, edit <code>src/App.js</code> and save to reload.
 				</p>
-				{this.state.toggle && <p>This is show and hide</p>} {/* Conditional */}
-				<button onClick={this.toggle}>Show/Hide</button>{' '}
-				{/* "this.toggle" method called here */}
+				<input type="text" ref={input => (this.text = input)} />{' '}
+				{/*  ref is used for input with arrow function */}
+				<button onClick={this.submit}>Show Value</button>
 			</div>
 		);
 	}
@@ -50,8 +27,8 @@ class App extends Component {
 
 class Welcome extends Component {
 	render() {
-		const { text, toggle } = this.props;
-		console.log(toggle);
+		const { text } = this.props;
+
 		return <h1 className="App-title">{text}</h1>;
 	}
 }
