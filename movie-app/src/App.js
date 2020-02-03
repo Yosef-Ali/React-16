@@ -3,6 +3,19 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+	constructor(props) {
+		super(props);
+		console.log('constructor');
+	} /* no this.props here, constractor is javascript, it reander first */
+
+	componentWillMount() {
+		console.log('will mount');
+	} /* mostly not used constractor do the same */
+
+	componentDidMount() {
+		console.log('mounted');
+	} /* mostly used for faching data */
+
 	state = {
 		toggle: true
 	};
